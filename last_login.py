@@ -58,7 +58,7 @@ def check_local_users(days):
 
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(description='show users that have not logged in')
+    PARSER = argparse.ArgumentParser(description='show duration since last login for each user')
     PARSER.add_argument('-d', '--days', type=int, default=30,
                         help='number of days since last log in (defult: 30)')
     ARGS = PARSER.parse_args()
