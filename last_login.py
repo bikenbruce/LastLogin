@@ -49,7 +49,7 @@ def check_local_users(days):
                     # print(last_log)
                     last_log_time = dparser.parse(last_log, fuzzy=True)
 
-                    print('user:', user, 'last_log:', last_log, 'last_log_time:', last_log_time)
+                    print('user:', user, '\tlast_log:', last_log, '\tlast_log_time:', last_log_time)
                     if TODAY - last_log_time > days:
                         print('greater than 30 days')
                     print("")
