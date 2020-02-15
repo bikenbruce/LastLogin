@@ -17,7 +17,7 @@ def check_local_users(days):
     """method to look at local users in /Users directory, and query the 'last' command
        to see when they last logged in."""
 
-    days = dt.timedelta(days=days)
+    days_ahead = dt.timedelta(days=days)
 
     for user in os.listdir("/Users"):
         if os.path.isdir(os.path.join("/Users", user)):
@@ -50,7 +50,7 @@ def check_local_users(days):
                     last_log_time = dparser.parse(last_log, fuzzy=True)
 
                     print('user:', user, '\tlast_log:', last_log, '\tlast_log_time:', last_log_time)
-                    if TODAY - last_log_time > days:
+                    if TODAY - last_log_time > days_ahead:
                         print('greater than 30 days')
                     print("")
                 except ValueError:
