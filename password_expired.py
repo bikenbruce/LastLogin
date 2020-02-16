@@ -20,9 +20,8 @@ def check_password_expired():
                else:
                   print('expired')
 
-         except:
-            print('unable to open file')
-            pass
+         except IOError as err:
+            print(err)
 
 if __name__ == "__main__":
 	check_password_expired()
