@@ -19,6 +19,7 @@ def check_password_expired():
                   print('not expired')
                else:
                   print('expired')
+                  # sysadminctl
 
          except IOError as err:
             print(err)
