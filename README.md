@@ -35,3 +35,10 @@ $ python last_login.py
 user: bruce 	last_log:  Fri Dec 13 13:39 	last_log_time: 2019-12-13 13:39:00
 ```
 
+# Notes
+- looking into using
+https://github.com/chilcote/outset
+https://github.com/gregneagle/relocatable-python
+
+- example code
+https://derflounder.wordpress.com/2016/12/21/migrating-ad-mobile-accounts-to-local-user-accounts/
