@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """This script goes through the /Users directory in mac os and finds the last login for
    each one.  Then checks to see how long ago they logged in.  The idea is to have a
    script that removes old accounts and files that have not been used in a period of time.
@@ -49,10 +48,9 @@ def check_local_users(days):
                     # print(last_log)
                     last_log_time = dparser.parse(last_log, fuzzy=True)
 
-                    print('user:', user, '\tlast_log:', last_log, '\tlast_log_time:', last_log_time)
+                    print('user:' + user + '\tlast_log:' + last_log +  '\tlast_log_time:' + last_log_time.strftime(" %a %b %-d %H:%M"))
                     if TODAY - last_log_time > days_ahead:
                         print('greater than 30 days')
-                    print("")
                 except ValueError:
                     print(user, 'unable to extract date time')
 
