@@ -13,7 +13,6 @@ import dateutil.parser as dparser
 import os
 import subprocess
 
-TODAY = dt.datetime.today()
 THIRTY_DAYS = dt.timedelta(days=30)
 
 
@@ -51,14 +50,15 @@ def check_local_users(days):
                 try:
                     # print(last_log)
                     last_log_time = dparser.parse(last_log, fuzzy=True)
+                    today = dt.datetime.today()
 
-                    if last_log_time > TODAY:
+                    if last_log_time > today:
                         last_log_time = last_log_time - dt.timedelta(days=365)
 
                     print('user:' + user + '\tlast_log_string:' + last_log +
                           '\tlast_log_datetime: ' +
                           last_log_time.strftime("%a %b %-d, %Y %H:%M"))
-                    if TODAY - last_log_time > days_ahead:
+                    if today - last_log_time > days_ahead:
                         print('\tgreater than 30 days')
                         ArchiveUser(user)
 
@@ -66,7 +66,7 @@ def check_local_users(days):
                     print(user, 'unable to extract date time')
 
 
-def ArchiveUser(user):
+def ArchiveUser(user, note=None):
     if UserRecordExists(user):
         print('\tUser record exists in Directory Service')
         if DeleteUserRecord(user):
@@ -76,7 +76,7 @@ def ArchiveUser(user):
 
     if UserHomeFolderExists(user):
         print('\tUser home folder exists')
-        if ArchiveHomeFolder(user,'/Users'):
+        if ArchiveHomeFolder(user,'/Users',note):
             print('\tUser home folder archived')
             if DeleteHomeFolder(user):
                 print('\tUser home folder deleted')
