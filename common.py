@@ -43,7 +43,6 @@ def ArchiveHomeFolder(user, destination_folder):
         return(True)
     else:
         return(False)
-        break()
 
 
 def DeleteHomeFolder(user):
@@ -57,4 +56,3 @@ def DeleteHomeFolder(user):
         return(True)
     else:
         return(False)
-        break()
