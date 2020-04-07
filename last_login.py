@@ -5,11 +5,12 @@
    that have not been used in a period of time.  In this test case,
    we are looking at 30 days."""
 
-from subprocess import Popen, PIPE, STDOUT
 import argparse
-import os
+from common import ArchiveHomeFolder, DeleteHomeFolder
 import datetime as dt
 import dateutil.parser as dparser
+import os
+import subprocess
 
 TODAY = dt.datetime.today()
 THIRTY_DAYS = dt.timedelta(days=30)
@@ -25,11 +26,11 @@ def check_local_users(days):
         if os.path.isdir(os.path.join("/Users", user)):
             # print(user)
 
-            pipe = Popen(
+            pipe = subprocess.run(
                 ['/usr/bin/last', '-1', user],
-                stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+                capture_output=True)
 
-            output = pipe.communicate()[0].strip().decode("utf-8")
+            output = pipe.stdout.strip().decode("utf-8")
 
             # print(output)
 
