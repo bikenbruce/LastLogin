@@ -52,6 +52,9 @@ def check_local_users(days):
                     # print(last_log)
                     last_log_time = dparser.parse(last_log, fuzzy=True)
 
+                    if last_log_time > TODAY:
+                        last_log_time = last_log_time - dt.timedelta(days=365)
+
                     print('user:' + user + '\tlast_log:' + last_log +
                           '\tlast_log_time:' +
                           last_log_time.strftime(" %a %b %-d %H:%M"))
