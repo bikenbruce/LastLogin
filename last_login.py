@@ -29,8 +29,6 @@ def check_local_users(days):
                 ['/usr/bin/last', '-1', user],
                 stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 
-            # python 3 note:
-            # need to add .decode("utf-8")
             output = pipe.communicate()[0].strip().decode("utf-8")
 
             # print(output)
