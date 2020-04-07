@@ -37,7 +37,7 @@ def check_password_expired(delete_user=False):
 
 
 def remove_user_record(user, path):
-    exist_state = subprocess.call(['/usr/bin/dscl', '.', '-read', path],
+    exist_state = subprocess.run(['/usr/bin/dscl', '.', '-read', path],
                                   capture_output=True)
     if exist_state.returncode == 0:
         delete_state = subprocess.call(['/usr/bin/dscl', '.', '-delete', path],
