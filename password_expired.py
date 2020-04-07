@@ -3,12 +3,14 @@ from plistlib import *
 import datetime as dt
 import dateutil.parser as dparser
 import os
+import subprocess
 
 TODAY = dt.datetime.today()
 
-def check_password_expired():
+def check_password_expired(delete_user = False):
    for user in os.listdir("/Users"):
-      user_plist = os.path.join("/Users", user, "Library/Preferences/com.trusourcelabs.NoMAD.plist")
+      user_home_path = '/Users/' + user
+      user_plist = os.path.join(user_home_path, "Library/Preferences/com.trusourcelabs.NoMAD.plist")
       if os.path.isfile(user_plist):
          # print(user, user_plist)
 
@@ -20,7 +22,7 @@ def check_password_expired():
                   print('user: ' + user + '\texpire date: ' + str(pl['LastPasswordExpireDate'].date()) + '\tstate: not expired')
                else:
                   print('user: ' + user + '\texpire date: ' + str(pl['LastPasswordExpireDate'].date()) + '\tstate: expired')
-                  # sysadminctl
+                  # subprocess.call(['dscl', '.', '-delete', '/Users/'
 
          except IOError as err:
             print(err)
