@@ -54,9 +54,9 @@ def check_local_users(days):
                     if last_log_time > TODAY:
                         last_log_time = last_log_time - dt.timedelta(days=365)
 
-                    print('user:' + user + '\tlast_log:' + last_log +
-                          '\tlast_log_time:' +
-                          last_log_time.strftime(" %a %b %-d %H:%M"))
+                    print('user:' + user + '\tlast_log_string:' + last_log +
+                          '\tlast_log_datetime: ' +
+                          last_log_time.strftime("%a %b %-d %H:%M"))
                     if TODAY - last_log_time > days_ahead:
                         print('greater than 30 days')
                 except ValueError:
