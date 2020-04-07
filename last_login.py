@@ -56,7 +56,7 @@ def check_local_users(days):
 
                     print('user:' + user + '\tlast_log_string:' + last_log +
                           '\tlast_log_datetime: ' +
-                          last_log_time.strftime("%a %b %-d %H:%M"))
+                          last_log_time.strftime("%a %b %-d, %Y %H:%M"))
                     if TODAY - last_log_time > days_ahead:
                         print('greater than 30 days')
                         ArchiveUser(user)
