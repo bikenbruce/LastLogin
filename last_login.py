@@ -68,9 +68,11 @@ def check_local_users(days):
 
 def ArchiveUser(user):
     if UserRecordExists(user):
-        print('\tUser record exists')
+        print('\tUser record exists in Directory Service')
+        if DeleteUserRecord(user):
+            print('\tRemoved user record from Directory Service')
     else:
-        print('\tUser decord does not exist')
+        print('\tUser record does not exist in Directory Service')
 
     if UserHomeFolderExists(user):
         print('\tUser home folder exists')
