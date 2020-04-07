@@ -32,8 +32,6 @@ def DeleteUserRecord(user):
 def ArchiveHomeFolder(user, destination_folder):
     if not os.path.exists(destination_folder):
         exit(1)
-    # Create DMG of home folder
-    print('archiving user folder:' + user + 'to:' + destination_folder)
 
     home_folder = os.path.join('/Users', user)
     destination = os.path.join(destination_folder, user)
