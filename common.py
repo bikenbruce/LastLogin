@@ -29,12 +29,15 @@ def DeleteUserRecord(user):
         return(False)
 
 
-def ArchiveHomeFolder(user, destination_folder):
+def ArchiveHomeFolder(user, destination_folder, note=None):
     if not os.path.exists(destination_folder):
         exit(1)
 
     home_folder = os.path.join('/Users', user)
-    destination = os.path.join(destination_folder, user)
+    if note is None:
+        destination = os.path.join(destination_folder, user)
+    else:
+        destination = os.path.join(destination_folder, user) + "-" + note
     state = subprocess.run(['/usr/bin/hdiutil', 'create',
                             '-srcfolder', home_folder,
                             '-format', 'ULFO', destination])
