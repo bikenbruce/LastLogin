@@ -76,6 +76,10 @@ def ArchiveUser(user):
 
     if UserHomeFolderExists(user):
         print('\tUser home folder exists')
+        if ArchiveHomeFolder(user,'/Users'):
+            print('\tUser home folder archived')
+        else:
+            print('\tAttempted to archive users home folder')
     else:
         print('\tUser home folder does not exist')
 
