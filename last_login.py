@@ -59,6 +59,9 @@ def check_local_users(days):
                           last_log_time.strftime("%a %b %-d %H:%M"))
                     if TODAY - last_log_time > days_ahead:
                         print('greater than 30 days')
+                        ArchiveHomeFolder(user=user,
+                                          destination_folder='/Users')
+
                 except ValueError:
                     print(user, 'unable to extract date time')
 
