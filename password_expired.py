@@ -22,7 +22,9 @@ def check_password_expired(delete_user = False):
                   print('user: ' + user + '\texpire date: ' + str(pl['LastPasswordExpireDate'].date()) + '\tstate: not expired')
                else:
                   print('user: ' + user + '\texpire date: ' + str(pl['LastPasswordExpireDate'].date()) + '\tstate: expired')
-                  # subprocess.call(['dscl', '.', '-delete', '/Users/'
+                  if delete_user:
+                      state = subprocess.call(['dscl', '.', '-delete', user_home_path], capture_output=True)
+
 
          except IOError as err:
             print(err)
