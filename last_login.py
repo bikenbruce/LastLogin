@@ -1,8 +1,9 @@
 #!python
-"""This script goes through the /Users directory in mac os and finds the last login for
-   each one.  Then checks to see how long ago they logged in.  The idea is to have a
-   script that removes old accounts and files that have not been used in a period of time.
-   In this test case, we are looking at 30 days."""
+"""This script goes through the /Users directory in mac os and finds the
+   last login for each one.  Then checks to see how long ago they logged in.
+   The idea is to have a script that removes old accounts and files
+   that have not been used in a period of time.  In this test case,
+   we are looking at 30 days."""
 
 from subprocess import Popen, PIPE, STDOUT
 import argparse
@@ -13,9 +14,10 @@ import dateutil.parser as dparser
 TODAY = dt.datetime.today()
 THIRTY_DAYS = dt.timedelta(days=30)
 
+
 def check_local_users(days):
-    """method to look at local users in /Users directory, and query the 'last' command
-       to see when they last logged in."""
+    """method to look at local users in /Users directory, and query the 'last'
+       command to see when they last logged in."""
 
     days_ahead = dt.timedelta(days=days)
 
@@ -42,14 +44,17 @@ def check_local_users(days):
                     last_log = output.split(' - ')[0].split('   ')[-1:][0]
                 else:
                     # print(output)
-                    last_log = output.replace('still logged in', '').strip().split('   ')[-1:][0]
+                    last_log = output.replace('still logged in', '').\
+                               strip().split('   ')[-1:][0]
                     # print(last_log)
 
                 try:
                     # print(last_log)
                     last_log_time = dparser.parse(last_log, fuzzy=True)
 
-                    print('user:' + user + '\tlast_log:' + last_log +  '\tlast_log_time:' + last_log_time.strftime(" %a %b %-d %H:%M"))
+                    print('user:' + user + '\tlast_log:' + last_log +
+                          '\tlast_log_time:' +
+                          last_log_time.strftime(" %a %b %-d %H:%M"))
                     if TODAY - last_log_time > days_ahead:
                         print('greater than 30 days')
                 except ValueError:
@@ -57,7 +62,8 @@ def check_local_users(days):
 
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(description='show duration since last login for each user')
+    PARSER = argparse.ArgumentParser(
+             description='show duration since last login for each user')
     PARSER.add_argument('-d', '--days', type=int, default=30,
                         help='number of days since last log in (defult: 30)')
     ARGS = PARSER.parse_args()
