@@ -69,7 +69,12 @@ def ArchiveUser(user):
     if UserRecordExists(user):
         print('\tUser record exists')
     else:
-        print('\tUser Record does not exist')
+        print('\tUser decord does not exist')
+
+    if UserHomeFolderExists(user):
+        print('\tUser home folder exists')
+    else:
+        print('\tUser home folder does not exist')
 
 
 if __name__ == "__main__":
