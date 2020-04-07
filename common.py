@@ -11,7 +11,7 @@ def UserRecordExists(home_folder):
         return(False)
 
 
-def UserHomeFolder(home_folder):
+def UserHomeFolderExists(home_folder):
     if os.path.isdir(home_folder):
         return(True)
     else:
