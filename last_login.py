@@ -11,6 +11,7 @@ from common import ArchiveHomeFolder, DeleteHomeFolder, UserHomeFolderExists
 import datetime as dt
 import dateutil.parser as dparser
 import os
+import socket
 import subprocess
 
 THIRTY_DAYS = dt.timedelta(days=30)
@@ -55,12 +56,15 @@ def check_local_users(days):
                     if last_log_time > today:
                         last_log_time = last_log_time - dt.timedelta(days=365)
 
+                    note = socket.gethostname().split('.')[0] + '-' +\
+                           last_log.time.strftime("%Y-%m-%d")
+
                     print('user:' + user + '\tlast_log_string:' + last_log +
                           '\tlast_log_datetime: ' +
                           last_log_time.strftime("%a %b %-d, %Y %H:%M"))
                     if today - last_log_time > days_ahead:
                         print('\tgreater than 30 days')
-                        ArchiveUser(user)
+                        ArchiveUser(user, note)
 
                 except ValueError:
                     print(user, 'unable to extract date time')
@@ -76,7 +80,7 @@ def ArchiveUser(user, note=None):
 
     if UserHomeFolderExists(user):
         print('\tUser home folder exists')
-        if ArchiveHomeFolder(user,'/Users',note):
+        if ArchiveHomeFolder(user, '/Users', note):
             print('\tUser home folder archived')
             if DeleteHomeFolder(user):
                 print('\tUser home folder deleted')
