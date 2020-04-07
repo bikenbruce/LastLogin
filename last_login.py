@@ -6,7 +6,8 @@
    we are looking at 30 days."""
 
 import argparse
-from common import UserRecordExists, DeleteUserRecord, ArchiveHomeFolder, DeleteHomeFolder
+from common import UserRecordExists, DeleteUserRecord
+from common import ArchiveHomeFolder, DeleteHomeFolder, UserHomeFolderExists
 import datetime as dt
 import dateutil.parser as dparser
 import os
