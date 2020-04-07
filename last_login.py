@@ -10,12 +10,13 @@ from common import UserRecordExists, DeleteUserRecord
 from common import ArchiveHomeFolder, DeleteHomeFolder, UserHomeFolderExists
 import datetime as dt
 import dateutil.parser as dparser
+import grp
 import os
 import socket
 import subprocess
 
 THIRTY_DAYS = dt.timedelta(days=30)
-
+ADMINS = grp.getgrnam('admin').gr_mem
 
 def check_local_users(days):
     """method to look at local users in /Users directory, and query the 'last'
@@ -64,7 +65,10 @@ def check_local_users(days):
                           last_log_time.strftime("%a %b %-d, %Y %H:%M"))
                     if today - last_log_time > days_ahead:
                         print('\tgreater than 30 days')
-                        ArchiveUser(user, note)
+                        if user not in ADMINS: 
+                            ArchiveUser(user, note)
+                        else:
+                            print('\t' + user + ' is an admin, not archiving account')
 
                 except ValueError:
                     print(user, 'unable to extract date time')
