@@ -57,7 +57,7 @@ def check_local_users(days):
                         last_log_time = last_log_time - dt.timedelta(days=365)
 
                     note = socket.gethostname().split('.')[0] + '-' +\
-                           last_log.strftime("%Y-%m-%d")
+                           last_log_time.strftime("%Y-%m-%d")
 
                     print('user:' + user + '\tlast_log_string:' + last_log +
                           '\tlast_log_datetime: ' +
