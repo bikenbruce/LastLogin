@@ -30,6 +30,9 @@ def DeleteUserRecord(home_folder):
 def ArchiveHomeFolder(user, destination_folder):
     if not os.path.exists(destination_folder):
         exit(1)
+    # Create DMG of home folder
+    print('archiving user folder:' + user + 'to:' + destination_folder)
+
     home_folder = os.path.join('/Users', user)
     destination = os.path.join(destination_folder, user)
     state = subprocess.run(['/usr/bin/hdiutil', 'create',
@@ -37,7 +40,21 @@ def ArchiveHomeFolder(user, destination_folder):
                             '-format', 'ULFO', destination],
                            capture_output=True)
     if state.returncode == 0:
-        # now delete home folder.... :)
         return(True)
     else:
         return(False)
+        break()
+
+
+def DeleteHomeFolder(user):
+    home_folder = os.path.join('/Users', user)
+    if not os.path.exists(home_folder):
+        exit(1)
+    
+    state = subprocess.run(['/bin/rm', '-rf', home_folder],
+                           capture_output=True)
+    if state.returncode == 0:
+        return(True)
+    else:
+        return(False)
+        break()
