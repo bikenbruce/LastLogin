@@ -1,44 +1,30 @@
-# last_login.py
+# NoMAD Client Management Scripts
 
-A simple script at this point, that looks at each of the folders within the /Users directory and looks for a last login of that user.  If the login time is greater than 30 days, a message will appear to indicate so.
+These are a set of scripts to manage local accounts that are created and maintained with NoMAD.  Att this point in time, these two scripts are intended to be used within a lab environment.
 
-## goals
+This environment noww includes the python framework folder.  This contains the python executable and libraries that are need to be useed with these scripts.
 
-- list users that have not logged in after _x_ number of days.
-- remove users that have not logged in after _x_ number of days.
-- create application via py2app to bundle python with the script so it is compatable with mac os catalia and forward.
+## last_login.py
 
-## requirements
+This script looks at all of the folders that are within the /Users folder on the main hard drive.  With each folder, a last command is run to see when the person last logged into the system.  By default, if the person has not logged into the computer within 30 days, these two acctions will occur:
+ 
+ - Removal of the account record in directory services
+ - Create a disk image of the user's folder.  Name of the dmg is the towwer id number, the name of the computer and followed by the last login date.
 
-- python3
-- virtualenv
-- required python modules are listed in requirements.txt
+### goals
 
-## installation
+Here's a list of goals that would be helpful with this script.
 
-- brew.  Look to <https://brew.sh> for installation.
-- python3: installed `brew install python3`
-- virtualenv: installed via `pip3 install virtualenv`, followed by `virtualenv venv -p python3`
-- Modules: installed via `virtualenv venv -r requirements.txt`
+ - Upload dmg files to cha-ds, or some other location
 
-## running
+## ad_password_expired.py
 
-here's a sample output:
+This script is intended to run on a daily basis.  It looks at the plist information within each user account that contains the date of when the AD password will expire.  If it has expired, the account record will be deleted on the local system.
 
-```zsh
-$ python last_login.py -h
+### goals
 
-usage: last_login.py [-h] [-d DAYS]
+- Add this script to run daily upon boot.  Maybe use outset for this?
 
-show duration since last login for each user
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -d DAYS, --days DAYS  number of days since last log in (defult: 30)
-
-$ python last_login.py 
-user: bruce 	last_log:  Fri Dec 13 13:39 	last_log_time: 2019-12-13 13:39:00
-```
 
 ## Notes
 
