@@ -1,9 +1,7 @@
 #!python
 from plistlib import *
 import datetime as dt
-import dateutil.parser as dparser
 import os
-import subprocess
 
 
 def check_password_expired(delete_user=False):
@@ -30,24 +28,12 @@ def check_password_expired(delete_user=False):
                               str(pl['LastPasswordExpireDate'].date()) +
                               '\tstate: expired')
                         if delete_user:
-                            remove_user_record(user, user_home_path)
+                            # remove_user_record(user, user_home_path)
+                            pass
 
             except IOError as err:
                 print(err)
 
-
-def remove_user_record(user, path):
-    exist_state = subprocess.run(['/usr/bin/dscl', '.', '-read', path],
-                                  capture_output=True)
-    if exist_state.returncode == 0:
-        delete_state = subprocess.call(['/usr/bin/dscl', '.', '-delete', path],
-                                       capture_output=True)
-        if delete_state != 0:
-            print('Unable to delete user record')
-    else:
-        print('User record does not exist')
-        # Maybe consder running last to see when user last logged in. 
-        # Consider deleting user's files
 
 if __name__ == "__main__":
     check_password_expired()
