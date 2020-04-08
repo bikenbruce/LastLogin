@@ -60,15 +60,15 @@ def check_local_users(days):
                     note = socket.gethostname().split('.')[0] + '-' +\
                            last_log_time.strftime("%Y-%m-%d")
 
-                    print('user:' + user + '\tlast_log_string:' + last_log +
-                          '\tlast_log_datetime: ' +
-                          last_log_time.strftime("%a %b %-d, %Y %H:%M"))
+                    print('user:', user, '\tlast_log_string:', last_log,
+                          '\tlast_log_datetime:',
+                          last_log_time.strftime("%a %b %_d, %Y %H:%M"))
                     if today - last_log_time > days_ahead:
                         print('\tgreater than 30 days')
                         if user not in ADMINS: 
                             ArchiveUser(user, note)
                         else:
-                            print('\t' + user + ' is an admin, not archiving account')
+                            print('\t', user, 'is an admin, not archiving account')
 
                 except ValueError:
                     print(user, 'unable to extract date time')
