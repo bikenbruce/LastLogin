@@ -4,7 +4,7 @@ These are a set of scripts to manage local accounts that are created and maintai
 
 This environment noww includes the python framework folder.  This contains the python executable and libraries that are need to be useed with these scripts.
 
-## last_login.py
+## lastlogin.py
 
 This script looks at all of the folders that are within the /Users folder on the main hard drive.  With each folder, a last command is run to see when the person last logged into the system.  By default, if the person has not logged into the computer within 30 days, these two acctions will occur:
  
@@ -17,7 +17,7 @@ Here's a list of goals that would be helpful with this script.
 
  - Upload dmg files to cha-ds, or some other location
 
-## ad_password_expired.py
+## passwordexpired.py
 
 This script is intended to run on a daily basis.  It looks at the plist information within each user account that contains the date of when the AD password will expire.  If it has expired, the account record will be deleted on the local system.
 
