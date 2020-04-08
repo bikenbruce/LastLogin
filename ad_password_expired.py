@@ -30,10 +30,10 @@ def CheckUserState(user, user_plist):
                 print('\tstate: not expired')
             else:
                 print('\tstate: expired')
-                RemoveUser(user)
+                RemoveUserRecord(user)
 
 
-def RemoveUser(user):
+def RemoveUserRecord(user):
     if UserRecordExists(user):
         if DeleteUserRecord(user):
             print('\tRemoved user record from Directory Service')
