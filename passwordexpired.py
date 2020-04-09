@@ -1,6 +1,6 @@
 #!python
 from common import UserRecordExists, DeleteUserRecord
-from plistlib import *
+from plistlib import load 
 import datetime as dt
 import os
 
