@@ -33,6 +33,7 @@ This script is intended to run on a daily basis.  It looks at the plist informat
 - [outset](https://github.com/chilcote/outset)
 - [relocatable python](https://github.com/gregneagle/relocatable-python)
 - [launchd info](https://www.launchd.info/)
+- [moving to pipenv](https://blog.tecladocode.com/migrating-from-pip-virtualenv-to-pipenv/)
 
 ### example code
 
