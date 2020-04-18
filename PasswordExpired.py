@@ -1,4 +1,11 @@
 #!python
+"""This script looks at each user account found in the /Users folder.
+   If the account has used NoLo / NoMAD Login, a plist file will contain
+   information about the account and when the password will expire.
+   If the password has expired, the user record found in directory 
+   services will be deleted.
+   """
+
 from common import UserRecordExists, DeleteUserRecord
 from plistlib import load 
 import datetime as dt
