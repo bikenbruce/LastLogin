@@ -1,4 +1,4 @@
-#!python
+#!Python.framework/Versions/3.7/bin/python3
 """This script goes through the /Users directory in mac os and finds the
    last login for each one.  Then checks to see how long ago they logged in.
    The idea is to have a script that removes old accounts and files
